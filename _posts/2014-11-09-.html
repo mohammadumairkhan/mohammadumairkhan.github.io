@@ -1,0 +1,36 @@
+---
+layout: post
+title: ''
+date: 2014-11-09 16:46:09.000000000 +05:00
+categories: []
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _wpas_skip_facebook: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+author:
+  login: mohammadumairkh
+  email: mohammad.umair.k@gmail.com
+  display_name: mohammadumairkh
+  first_name: ''
+  last_name: ''
+---
+<p class="p1"><span class="s1">"Clean code" is what is over my head for the past few days. Thanks to an excellent course by John Papa on Angular JS Patterns on Pluralsight, it has made think why there is a constant need to improve in the way we write code. One thing that struck my mind is the separation of concern, which is essential not only in understanding the code, but also maintenance, if your application is growing overtime. I am a big fan of unit testing my javascript (and you should be too) and previously I have made attempts to write clean unit tests to make them readable, scaleable and all that magic. The previous post can be found here. This time I have decided to take it one level up simply because I realised how important is this “Rule of 1” (credits John Papa). Let me explain what the “Rule of 1” is.</span></p>
+<p class="p1"><span class="s1">“The Rule of 1 simply states that each component or a file should exactly be responsible for ONE thing or ONE purpose.”</span></p>
+<p class="p1"><span class="s1">An example can be, an Angular JS factory, “UserProfile” should only be responsible or expose API for interacting with the User Profile and should not be responsible for carrying anything else.</span></p>
+<p class="p1"><span class="s1">Taking all that, lets try and apply that logic to out unit tests. I will be using an overly simplistic Angular JS controller as a proof of concept. So have a look at this controller, it contains a XHR request to get some data and attach it to the view via the “vm”. Note that I am using the “Controller As” syntax so bye bye $scope and hello cleanliness.</span></p>
+<p class="p1">https://gist.github.com/693bc7db847bfdc7549d.git</p>
+<p class="p1">To test this controller I needed to mock the call to the “dataservice” and there are 3 ways we can do this.</p>
+<p class="p1"><span class="s1">Good</span></p>
+<p class="p1"><span class="s1"> Declare the mock object in the test file as a javascript variable. This approach is common but it makes the test file feel like spaghetti. Its hard to find stuff and you need to copy over the mock objects if they are used in more than one file.</span></p>
+<p class="p1"><span class="s1">Better</span></p>
+<p class="p1"><span class="s1"> Declare the mock object in a mock Angular JS factory and expose it via a return object. This approach was blogged earlier here. The problem with this approach is that the mock Angular JS factory gets messier as the objects are added to it. It becomes one long/big file making it harder to maintain.</span></p>
+<p class="p1"><span class="s1">Best</span></p>
+<p class="p1"><span class="s1"> Declare the mock object in a JSON file, load it inside an Angular JS factory and expose it via a return object. I find this approach to be the best. Each object has its own file and is cleanly loaded into the Angular JS mock factory. The separation of objects into their own files make it a ton easier to maintain.</span></p>
+<p class="p1"><span class="s1">In order to achieve the “Best” way to mock objects, we will make use of “jQuery-Jasmine” through which we will load the objects form the JSON file.</span></p>

@@ -1,0 +1,66 @@
+# SITE CONFIGURATION
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://blogs.mumairkhan.com" # the base hostname & protocol for your site
+
+# THEME-SPECIFIC CONFIGURATION
+theme:
+  # Meta
+  title: Mohammad Umairs Pages
+  avatar: avatar.png
+  description: "My discoveries, ideas, thoughts and solutions." # used by search engines
+  
+  # Header and footer text
+  header_text: >
+     <p>Mohammad Umair Khan</p>
+     <p>Senior Developer at 10Pearls LLC</p>
+     <p>trainer, mentor, foo, bar</p>
+  footer_text: >
+   Always remember, "there are somethings money can't buy ..."
+  
+  # Icons
+  rss: false
+  email_address: "mohammad.umair.k@gmail.com"
+  behance:
+  bitbucket: 
+  dribbble: 
+  facebook: 
+  flickr: 
+  github: "mohammadumairkhan"
+  google_plus: 
+  instagram: 
+  linkedin: "https://www.linkedin.com/pub/mohammad-umair-khan/36/b85/485"
+  pinterest: 
+  reddit: 
+  soundcloud: 
+  stack_exchange:  # full URL
+  steam: 
+  tumblr: 
+  twitter: "mohammadumairkh"
+  wordpress: 
+  youtube: 
+  
+  # Scripts
+  google_analytics: # tracking id, e.g. "UA-000000-01"
+  disqus_shortname:
+  
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_email: "Email"
+  str_next: "Next"
+  str_prev: "Prev"
+  str_continue_reading: "Continue reading"
+  
+  # Colors, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+
+# PAGINATION
+paginate: 5
+paginate_path: "blog/page:num"
+  
+# BUILD SETTINGS
+markdown: kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: :compressed

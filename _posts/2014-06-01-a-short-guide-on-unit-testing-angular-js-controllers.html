@@ -1,0 +1,77 @@
+---
+layout: post
+title: A short guide on unit testing Angular JS Controllers
+date: 2014-06-01 10:32:25.000000000 +05:00
+categories:
+- Angular JS
+- Web
+tags:
+- AngularJS
+- Jasmine
+- karma
+- mocking
+- TDD
+- unit testing
+status: publish
+type: post
+published: true
+meta:
+  geo_public: '0'
+  _edit_last: '65775760'
+  _publicize_pending: '1'
+author:
+  login: mohammadumairkh
+  email: mohammad.umair.k@gmail.com
+  display_name: mohammadumairkh
+  first_name: ''
+  last_name: ''
+---
+<p>Unit testing becomes a challenging task when one is not used to doing it. I faced a similar scenario writing my first application in Angular JS. I took more 3x more time to write unit tests than writing the actual controllers, services etc. I was not sure what and how to unit test. In this post I will go through of what I think is a comprehensive unit test for a controller in Angular JS and for that I will be using Jasmine as my testing framework.</p>
+<p><!--more--></p>
+<p>** One thing I believe everyone should concentrate on is that it is a “unit” test and everything else this “unit” is dependent upon must be mocked out. (e.g. services, APIs, route resolves etc)</p>
+<p>Controllers in Angular JS are only responsible to interacting with the view via the scope and almost any other operation is done via the Angular Services. So, the controllers in my application (and probably yours too) will contain:</p>
+<ul>
+<li>POJOs on the scope which are provided as attributes to the directives used in the view</li>
+<li>Functions which make makes use of an angular service for data manipulation or making API calls or any other operation. They might return promises, so a controller can have success and error hooks</li>
+</ul>
+<p>So a typical controller would look like this:</p>
+<p>&nbsp;</p>
+<p>[embed]https://gist.github.com/mohammadumairkhan/c0dd8534075e809387b6[/embed]</p>
+<p>&nbsp;</p>
+<p>Lets go ahead and analyze what unit tests would completely test this controller …</p>
+<p>I often do a little exercise to visualize the controller as a tree and chalk out all the possible unit tests. For example, unit tests for the above controller would be something like this…</p>
+<p>[caption id="attachment_72" align="alignnone" width="1200"]<a href="https://mukhanblogs.files.wordpress.com/2014/06/controller_unit_test.jpg"><img class="wp-image-72 size-full" src="assets/controller_unit_test.jpg" alt="Map for unit testing an Angular Controller" width="1200" height="595" /></a> Map for unit testing an Angular Controller[/caption]</p>
+<p>Once our analysis of unit tests is complete we will then set up the controller’s test file and it looks like this …</p>
+<p>** Setting up the test environment is out of the scope of this document</p>
+<p>[embed]https://gist.github.com/mohammadumairkhan/c1acd6536f37af45f970[/embed]</p>
+<p>In the above code:</p>
+<ul>
+<li>we mocked out our route resolve and injected it into our controller instance i.e. <i>adminListResolveMock</i></li>
+<li>we created a Jasmine Spy object with all the methods we need i.e. <i>adminsServMock</i></li>
+<li>finally we added some return values to <i>ShowDeleteConfirmModal </i>and <i>GetAdminList </i>so that we can resolve and reject these promises on will to test the code completely</li>
+</ul>
+<p>&nbsp;</p>
+<p>let’s go ahead and start writing unit tests for each node in the above tree from left to right..</p>
+<p>&nbsp;</p>
+<p><b>Testing initialize values and types</b></p>
+<p>In the following unit tests, I just made sure that all the initialize values and needed functions are present in the controller.</p>
+<p>[embed]https://gist.github.com/mohammadumairkhan/5cf595eaa3c0b5597dd0[/embed]</p>
+<p><i>Pretty simple!</i></p>
+<p>&nbsp;</p>
+<p><b>Testing onDeleteAdmin function</b></p>
+<p>The following unit tests, will test the onDeleteAdmin function with all its possibilities.</p>
+<p>[embed]https://gist.github.com/mohammadumairkhan/805554ea52614926f355[/embed]</p>
+<p>*** Note, since we are resolving and rejecting promises outside the Angular cycle, we need to let Angular know when we resolved or rejected a promise. It is accomplished via scope.$apply() method.</p>
+<p>&nbsp;</p>
+<p><b>Testing onViewPortals function</b></p>
+<p>The following unit tests will test the onViewPortals function with all its possibilities</p>
+<p>[embed]https://gist.github.com/mohammadumairkhan/6336c48e757ee5e052b9[/embed]</p>
+<p>&nbsp;</p>
+<p>With this, we complete unit testing our sample controller. You can find the source for the controller and its unit tests on the following links:</p>
+<p>Controller is <a title="Sample Controller" href="https://gist.github.com/mohammadumairkhan/c0dd8534075e809387b6" target="_blank">here</a></p>
+<p>Unit test is <a title="Unit test for controller" href="https://gist.github.com/mohammadumairkhan/1dc5d718cdf31d552241" target="_blank">here</a></p>
+<p>&nbsp;</p>
+<p><strong>Conclusion</strong></p>
+<p>Controllers if written with the aim of just to interact with the view are pretty simple to test. Apart from how to test controllers, I believe it is important to create either a mind-map or a small diagram which outlines all the possibilities for the tests. This technique applies to all tests, irrespective of language or framework and helps one stay focused. I recommend that the readers should at least give it a try.</p>
+<p>&nbsp;</p>
+<p>If you have any questions, comments please feel free to ask.</p>
