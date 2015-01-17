@@ -33,8 +33,8 @@ author:
   login: mohammadumairkh
   email: mohammad.umair.k@gmail.com
   display_name: mohammadumairkh
-  first_name: ''
-  last_name: ''
+  first_name: 'Mohammad Umair'
+  last_name: 'Khan'
 ---
 <p>Angular JS is a powerful front-end framework and often I have tried and successfully delegated it responsibilities for which I might have written a good chunk of code on the server back-end. One such instance was pagination. If you are not familiar, pagination is a technique through which we present tabular data to the user by breaking it into pages.</p>
 <p>In one of my projects, I encountered a use-case in which the size of the records coming in was not very very huge. I wanted to paginate the records to enhance the user experience and making round trips to the server to fetch each page felt like forever. It is then I decided to completely handover my pagination responsibilities to the front-end.</p>
@@ -43,11 +43,11 @@ author:
 <p><b>Input:</b> 1) Complete list of records, 2) Requested page number (we will call this current page) and 3) Records per page</p>
 <p><b>Output: </b>List of records for the requested page</p>
 <p>Here is how simple and tiny the filter came out to be …</p>
-<p>[gist https://gist.github.com/mohammadumairkhan/ed590411ce338b9bf3e9]</p>
+<p>{% gist ed590411ce338b9bf3e9 %}</p>
 <p>Its usage is even simpler.</p>
 <p>Hook it up as a filter to the <b><i>ng-repeat </i></b>expression as follows and it would to all the pagination stuff for you.</p>
 <p><em>-- Look for hints in the comments</em></p>
-<p>[gist https://gist.github.com/mohammadumairkhan/f875a20b784f4518a277]</p>
+<p>{% gist f875a20b784f4518a277 %}</p>
 <p>Pretty simple huh ?</p>
 <p>Its complete source can be found in <a title="kuAngular" href="https://github.com/mohammadumairkhan/kuangular" target="_blank">this</a> little github repository. Just clone the it and open up “index.html” and browse to the pagination demo.</p>
 <p><em>It’s good, isn’t it ? — Big Boss</em></p>
