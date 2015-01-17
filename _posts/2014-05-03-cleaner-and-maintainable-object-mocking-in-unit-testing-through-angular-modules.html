@@ -30,34 +30,32 @@ author:
 ---
 <p>** Prior knowledge of unit testing angular apps with Jasmine and Karma is required to understand this post.</p>
 <p><br style="color:#464646;" /><span style="color:#464646;">Modularity in Angular allows us to unit tests the pieces of application with ease. One can easily mock out services and objects and can unit test the angular component (service, controller, filter etc). But there are objects that need to be mocked out in more than one unit test and sometimes they can be big making the test file look really ugly. For instance, the $modal service can be used a lot in the application and we need to test our apps behavior every time a modal opens or closes. So we will need to mock the $modal service in each unit test and here is one way of doing it:</span><!--more--></p>
-<p>[caption id="attachment_34" align="alignnone" width="676"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b41.png"><img class="size-full wp-image-34" src="assets/b41.png" alt="Unit test" width="676" height="571" /></a> Unit test[/caption]</p>
+<p><a href="/assets/b41.png"><img class="size-full wp-image-34" src="/assets/b41.png" alt="Unit test" width="676" height="571" /></a></p>
 <p>In the above example, the code highlighted by the red box is a very comprehensive mocked instance and promise of the $modal service of Angular. It is so often used that it is cumbersome to make these two variables in each test file and since it takes a lot of vertical space, it is not readable at all. How cool it would be if I could make it look like this …</p>
-<p>[caption id="attachment_35" align="alignnone" width="638"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b42.png"><img class="size-full wp-image-35" src="assets/b42.png" alt="Want to achieve unit test" width="638" height="205" /></a> Want to achieve unit test[/caption]</p>
+<p><a href="/assets/b42.png"><img class="size-full wp-image-35" src="/assets/b42.png" alt="Want to achieve unit test" width="638" height="205" /></a></p>
 <p><em style="color:#464646;">It is pretty much possible and here is how …</em></p>
-<p>[caption id="attachment_36" align="alignnone" width="173"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b43.png"><img class="size-full wp-image-36" src="assets/b43.png" alt="Mock file" width="173" height="412" /></a> Mock file[/caption]</p>
+<p><a href="/assets/b43.png"><img class="size-full wp-image-36" src="/assets/b43.png" alt="Mock file" width="173" height="412" /></a></p>
 <p><span style="color:#464646;">Create a new directory under tests. You can name it anything; I have named it as </span><strong style="color:#464646;">‘mocks’</strong><span style="color:#464646;"> and then add a new file under that directory and name it as you like; I have named it as </span><strong style="color:#464646;">‘FPMocks.js’</strong><span style="color:#464646;">. This file would contain a module in which you can define factories, values, constants. An example of a factory is shown below.</span></p>
-<p>[caption id="attachment_37" align="alignnone" width="676"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b44.png"><img class="size-full wp-image-37" src="assets/b44.png" alt="FPMocks.js" width="676" height="493" /></a> FPMocks.js[/caption]</p>
+<p><a href="/assets/b44.png"><img class="size-full wp-image-37" src="/assets/b44.png" alt="FPMocks.js" width="676" height="493" /></a></p>
 <p><span style="color:#464646;">This factory returns an object which contains a mocked object for promise returned by a modal and modal instance which is injected into the modal controller.</span><br style="color:#464646;" /><span style="color:#464646;">Now we need to tell karma to load this file when running our tests through the karma.conf.js</span></p>
-<p>[caption id="attachment_38" align="alignnone" width="676"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b45.png"><img class="size-full wp-image-38" src="assets/b45.png" alt="Karma config" width="676" height="537" /></a> Karma config[/caption]</p>
+<p><a href="/assets/b45.png"><img class="size-full wp-image-38" src="/assets/b45.png" alt="Karma config" width="676" height="537" /></a></p>
 <p><span style="color:#464646;">Please make sure you pay attention to the position of the file in the files array. We want to load this file before any of the tests are loaded on the browser.</span><br style="color:#464646;" /><br style="color:#464646;" /><span style="color:#464646;">Once we have configured karma to use our file, we can add this module (FPMocks) to our test file and inject its service ($modalMock) into our beforeEach function like this …</span></p>
-<p>[caption id="attachment_39" align="alignnone" width="375"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b46.png"><img class="size-full wp-image-39" src="assets/b46.png" alt="Rewrite unit tests with FPMocks " width="375" height="114" /></a> Rewrite unit tests with FPMocks[/caption]</p>
-<p>[caption id="attachment_40" align="alignnone" width="636"]<a href="http://mukhanblogs.files.wordpress.com/2014/05/b47.png"><img class="size-full wp-image-40" src="assets/b47.png" alt="Rewrite unit tests with FPMocks" width="636" height="344" /></a> Rewrite unit tests with FPMocks[/caption]</p>
-<h2 class="wsite-content-title" style="font-weight:400;color:#373737;"><span style="font-size:small;">Now, our spy will always return the promise from the $modalMock service. You can easily call <strong>close() </strong>or<strong>dismiss()</strong> in your tests and it will behave the exact same way as it does in the controllers and services in your app making it easier to test your code if the modal is resolved or rejected.</span></h2>
+<p><a href="/assets/b46.png"><img class="size-full wp-image-39" src="/assets/b46.png" alt="Rewrite unit tests with FPMocks " width="375" height="114" /></a></p>
+<p><a href="/assets/b47.png"><img class="size-full wp-image-40" src="/assets/b47.png" alt="Rewrite unit tests with FPMocks" width="636" height="344" /></a></p>
+<p>Now, our spy will always return the promise from the $modalMock service. You can easily call <strong>close() </strong>or<strong>dismiss()</strong> in your tests and it will behave the exact same way as it does in the controllers and services in your app making it easier to test your code if the modal is resolved or rejected.</p>
 <p>Taking this approach provides us with the following benefits:</p>
 <ul>
-<li><strong><span style="font-size:small;">Cleaner and more readable test files</span></strong></li>
+<li><strong><span>Cleaner and more readable test files</span></strong></li>
 </ul>
-<p style="padding-left:60px;">Our tests/specs look a lot cleaner and are easier on the eyes.</p>
 <ul>
-<li><strong><span style="font-size:small;">Reusable code</span></strong></li>
+<li><strong><span>Reusable code</span></strong></li>
 </ul>
-<h2 class="wsite-content-title" style="font-weight:400;color:#373737;padding-left:60px;"><span style="font-size:small;">Using Angular module makes this piece of code reusable. It is as simple as a service injection and requires very little, and I mean very little configuration. One can always pull it to other projects as well.<br />
-</span></h2>
+<p>Using Angular module makes this piece of code reusable. It is as simple as a service injection and requires very little, and I mean very little configuration. One can always pull it to other projects as well.</p>
+
 <ul>
-<li><strong><span style="font-size:small;">Code is scale-able and maintainable</span></strong></li>
+<li><strong><span>Code is scale-able and maintainable</span></strong></li>
 </ul>
-<p style="padding-left:60px;">Since my mocks are at one place, it is easier to update them if the requirement or the API changes at some point in the future. Going and editing each file is more error prone and tiresome.</p>
-<h2 class="wsite-content-title" style="font-weight:400;color:#373737;"><span style="font-size:small;"><br />
-You can add as many services, constants, values, factories to this module and they will simply become injectable in the unit tests.</span></h2>
+<p>Since my mocks are at one place, it is easier to update them if the requirement or the API changes at some point in the future. Going and editing each file is more error prone and tiresome.</p>
+<p>You can add as many services, constants, values, factories to this module and they will simply become injectable in the unit tests.</p>
 <p>Any questions or suggestions are welcome.</p>
 <p>Thanks</p>
