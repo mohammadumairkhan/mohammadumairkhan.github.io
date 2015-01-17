@@ -24,17 +24,17 @@ author:
   login: mohammadumairkh
   email: mohammad.umair.k@gmail.com
   display_name: mohammadumairkh
-  first_name: ''
-  last_name: ''
+  first_name: 'Mohammad Umair'
+  last_name: 'Khan'
 ---
 <p>Writing clean, scale-able and maintainable unit tests is as important as writing application source code with all those qualities. Pragmatic Programmer (yes, the famous book) says that developers are constantly in maintenance mode due to various reasons which means that the tests we write need to be updated constantly. One might think, why so much of overhead? While unit tests may contain tons of other advantages, to me, unit tests give me the confidence I need for refactoring.</p>
 <p><!--more--></p>
 <p>I want to go over a small example of how one can make its unit tests better in context of testing Angular JS custom filters. Filters usually take in a bunch of arguments and return a Javascript object (primitive or list). So technically, it has few arguments and an output. Lets look at a small custom filter I made for client side pagination with UI-Bootstrap's Pagination Directive.</p>
-<p>https://gist.github.com/mohammadumairkhan/677a1b813011658146c4</p>
+<p>{% gist 677a1b813011658146c4 %}</p>
 <p>Simple isn't it ?</p>
 <p>Anyways, here is the test for the filter ...</p>
-<p>https://gist.github.com/mohammadumairkhan/93ffa06493cf29be8487</p>
+<p>{% gist 93ffa06493cf29be8487 %}</p>
 <p>I did not feel comfortable at all with the quality of unit tests. It violates DRY principle a lot. It would require more effort to add/delete/update tests and if the API changes, it would require the developer to update all the unit tests with the updated API. To resolve the above issues I came up with an alternative way of testing the filter ...</p>
-<p>https://gist.github.com/mohammadumairkhan/ec3f664e10cf63c08ce1</p>
+<p>{% gist ec3f664e10cf63c08ce1 %}</p>
 <p>Each describe block in the above tests is responsible for a type of unit tests, i.e. exceptions and normal tests. Each contains a collection of specs that are fed to a routine inside the "it" block (which defines the test). These  tests are more maintainable and reduce the number of "it" blocks to exactly one. Add a spec on the list to add another test, pretty darn easy. Moreover it is pretty adaptable to the API changes as well and can surely make the lives of the developers much easier.</p>
 <p>&nbsp;</p>
