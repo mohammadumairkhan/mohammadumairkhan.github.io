@@ -37,10 +37,8 @@ theme:
   tumblr: 
   twitter: "mohammadumairkh"
   wordpress: 
-  youtube: 
-  
-  # Posts
-  excerpt_separator: <!--more-->
+  youtube:
+
   # Scripts
   google_analytics: # tracking id, e.g. "UA-000000-01"
   disqus_shortname:

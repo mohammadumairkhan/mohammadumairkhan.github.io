@@ -27,7 +27,6 @@ author:
   last_name: 'Khan'
 ---
 <p>Unit testing becomes a challenging task when one is not used to doing it. I faced a similar scenario writing my first application in Angular JS. I took more 3x more time to write unit tests than writing the actual controllers, services etc. I was not sure what and how to unit test. In this post I will go through of what I think is a comprehensive unit test for a controller in Angular JS and for that I will be using Jasmine as my testing framework.</p>
-<p><!--more--></p>
 <p>** One thing I believe everyone should concentrate on is that it is a “unit” test and everything else this “unit” is dependent upon must be mocked out. (e.g. services, APIs, route resolves etc)</p>
 <p>Controllers in Angular JS are only responsible to interacting with the view via the scope and almost any other operation is done via the Angular Services. So, the controllers in my application (and probably yours too) will contain:</p>
 <ul>

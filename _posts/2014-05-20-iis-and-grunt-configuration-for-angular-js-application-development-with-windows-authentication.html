@@ -29,7 +29,6 @@ author:
   last_name: 'Khan'
 ---
 <p>There are times when one works with a 'not so popular' stack of technologies. The stack which I am using for development is one of those. We have a SPA based on Angular JS which consumes .Net Web API through REST services. The icing on the cake is, it uses Windows Authentication, since it is an app designed to be used on the intranet. I had a few hiccups on setting up the development environment mainly due to:</p>
-<p><!--more--></p>
 <ol style="color:#464646;">
 <li>How to serve my Web API and SPA through IIS with Windows Authentication</li>
 <li>How to configure livereload of html, css and javascript during development while it is all being served through IIS (I hate pressing F5 over and over again). My custom Yeoman generator is used to doing things <strong>connect-livereload </strong>way. It was hard for me to configure livereload dynamically through grunt so I had a tough time setting up a development environment which uses livereload for CSS and javascript files and at the same time use the app hosted on IIS rather then using the <em>connect</em> plugins.</li>

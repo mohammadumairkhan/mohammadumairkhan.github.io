@@ -13,18 +13,12 @@ layout: default
     <div class="post-teaser">
     
       <header>
-        <h1>
+        <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h1>
-        
+        </h2>
+
         <p class="meta">{{ post.date | date: "%B %-d, %Y" }}</p>
       </header>
-
-      <div class="excerpt">
-        {{ post.excerpt }}
-
-        <a class="button" href="{{ post.url | prepend: site.baseurl }}">{{ site.theme.str_continue_reading }}</a>
-      </div>
       
     </div>
     {% endfor %}
