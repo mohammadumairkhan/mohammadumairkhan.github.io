@@ -33,4 +33,4 @@ Here is how the directive source looks like:
 
 Hope this might come in handy. Keep the suggestions/recommendations coming in.
 
-Source code can be found [here](https://github.com/mohammadumairkhan/ukScroll)
+Source code can be found [here](https://github.com/mohuk/ukScroll)
