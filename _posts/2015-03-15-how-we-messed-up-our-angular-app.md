@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How we messed up up our Angular App
+title: How we messed up our Angular App
 date: 2015-03-15 04:59:17.000000000 +05:00
 tags:
 - AngularJS
