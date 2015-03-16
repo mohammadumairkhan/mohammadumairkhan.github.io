@@ -37,7 +37,7 @@ A great way to structure medium to large scale applications is breaking them int
 ### 2. Abusing the **$rootScope**
 
 #### What we did:
-Whenever we had to put some global state variables like some messages or logged in user information, **$rooScope** was our best friend unless we found out its true colors. From there on, things became insanely difficult to maintain. Remember, anything on the **$rootScope** is prototypaly inherited into each **$scope** across the application and as a result of this, we had no clue who is changing what.
+Whenever we had to put some global state variables like some messages or logged in user information, **$rootScope** was our best friend unless we found out its true colors. From there on, things became insanely difficult to maintain. Remember, anything on the **$rootScope** is prototypaly inherited into each **$scope** across the application and as a result of this, we had no clue who is changing what.
 
 ![rootScope Abuse](/assets/20150315/rootScopeAbuse.png)
 
@@ -77,7 +77,7 @@ Prefixing directives with a two letter acronym of your application eases this. A
 ### 6. Not using HTTP Interceptors
 
 #### What we did:
-To handle error responses, we made a function on a service and passed that function to the error handler of every **$http** request. This violates DRY and was a nuisance to add with every request. We could have wrapped **$http** in a service and chained the error handler there, but thats not pretty either.
+To handle error responses, we made a function on a service and passed that function to the error handler of every **$http** request. This violates [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) and was a nuisance to add with every request. We could have wrapped **$http** in a service and chained the error handler there, but thats not pretty either.
 
 ![Generic Error Handlers](/assets/20150315/httpInterceptors.png) 
 
