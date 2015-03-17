@@ -15,7 +15,7 @@ author:
   first_name: 'Mohammad Umair'
   last_name: 'Khan'  
 ---
-Back in July of 2013, we were entrusted by a big company to write them an Angular app. Working on Angular JS for the first time, we made some choices which are worthy of entering the *Hall of Shame*. 
+Back in July of 2013, it happened and we were writing an Angular app. Working on Angular JS for the first time, we made some choices which are worthy of entering the *Hall of Shame*. 
 
 Inspired by Dave Smiths talk (by the same title as this post) at the NG-NL Conf, I want to share exactly how **"we"** messed up our Angular app so you **don't**.
 
